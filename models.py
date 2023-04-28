@@ -1,45 +1,48 @@
-"""Models for adopt app."""
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 
 class Pet(db.Model):
+    """Pet model."""
+
     __tablename__ = "pets"
 
-    # id: auto-incrementing integer
     id = db.Column(
         db.Integer,
         primary_key=True,
         autoincrement=True,
     )
-    # name: text, required
+
     name = db.Column(
         db.String(50),
         nullable=False,
     )
-    # species: text, required
+
     species = db.Column(
+        # TODO: longest species name
         db.String(50),
         nullable=False,
     )
-    # photo_url: text, required (we’ll make it '' if they don’t give us one)
+
     photo_url = db.Column(
         db.Text,
         nullable=False,
         default='',
     )
-    # age: text, (baby, young, adult, senior) required
+
     age = db.Column(
+        # TODO: longest age name
         db.String(20),
         nullable=False,
     )
-    # notes: text, optional
+
     notes = db.Column(
         db.Text,
+        nullable=False,
+        default=""
     )
-    # available: true/false, required, should default to available
+
     available = db.Column(
         db.Boolean,
         nullable=False,

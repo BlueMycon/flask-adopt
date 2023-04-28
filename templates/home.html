@@ -8,7 +8,7 @@
 <img src="{{pet.photo_url}}">
 <p>
   <a href="/{{pet.id}}">{{pet.name}}</a>
-  is {{pet.avalailable}}
+  is {{"available" if pet.available else "not available"}}
 </p>
 {% endfor %}
 
