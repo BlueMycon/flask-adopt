@@ -1,0 +1,14 @@
+{% block title %}Pets{% endblock %}
+
+{% block content %}
+
+{% for pet in pets %}
+<img src="{{pet.photo_url}}">
+<p>
+  <a href="/{{pet.id}}">{{pet.name}}</a>
+  is {{pet.avalailable}}
+</p>
+<a href="/add"><button>Add a Pet</button></a>
+{% endfor %}
+
+{% endblock %}
