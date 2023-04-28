@@ -37,14 +37,14 @@ def add_pet():
     form = AddPetForm()
     # lookup form.populate_obj
     if form.validate_on_submit():
-        pet = Pet(**form.data)
+        # pet = Pet(**form.data)
 
-        # pet = Pet(
-        #     name=form.name.data,
-        #     species=form.species.data,
-        #     photo_url=form.photo_url.data,
-        #     age=form.age.data,
-        #     notes=form.notes.data)
+        pet = Pet(
+            name=form.name.data,
+            species=form.species.data,
+            photo_url=form.photo_url.data,
+            age=form.age.data,
+            notes=form.notes.data)
 
         db.session.add(pet)
         db.session.commit()
