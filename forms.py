@@ -1,19 +1,39 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, FloatField
-from wtforms.validators import Optional, URL, InputRequired
+from wtforms.validators import Optional, URL, InputRequired, DataRequired
 
 class AddPetForm(FlaskForm):
     """Forms for adopt app."""
     name = StringField(
         "Pet Name",
-        validators=[InputRequired()])
+        validators=[InputRequired()]
+        )
+
     species = SelectField(
         "Species",
-        choices=[('cat', 'Cat'), ('dog', 'Dog'), ('porcupine', 'Porcupine')])
+        choices=[('cat', 'Cat'),
+                 ('dog', 'Dog'),
+                 ('porcupine', 'Porcupine')
+                 ],
+        validators=[DataRequired()]
+        )
+
     photo_url = StringField(
         "Photo URL",
-        validators=[Optional(), URL()])
+        validators=[Optional(), URL()]
+        )
+
     age = SelectField(
         "Age",
-        choices=[('baby', 'Baby'), ('young', 'Young'), ('adult', 'Adult'), ('senior', 'Senior')])
-    notes = StringField("Notes")
+        choices=[('baby', 'Baby'),
+                 ('young', 'Young'),
+                 ('adult', 'Adult'),
+                 ('senior', 'Senior'),
+                 ],
+        validators=[DataRequired()]
+        )
+
+    notes = StringField(
+        "Notes",
+        validators=[Optional()]
+        )

@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% block title %}Pets{% endblock %}
 
 {% block content %}
@@ -8,7 +10,8 @@
   <a href="/{{pet.id}}">{{pet.name}}</a>
   is {{pet.avalailable}}
 </p>
-<a href="/add"><button>Add a Pet</button></a>
 {% endfor %}
+
+<a href="/add"><button>Add a Pet</button></a>
 
 {% endblock %}

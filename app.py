@@ -2,9 +2,9 @@
 
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-
+from forms import AddPetForm
 from models import connect_db, db, Pet
 
 app = Flask(__name__)
@@ -27,6 +27,26 @@ toolbar = DebugToolbarExtension(app)
 # Routes
 @app.get("/")
 def show_homepage():
+
     return render_template("home.html")
 
+@app.route("/add", methods=["GET", "POST"])
+def add_pet():
+    """Show add pet form and validate the inputs"""
 
+    form = AddPetForm()
+
+    if form.validate_on_submit():
+        pet = Pet(
+            name=form.name.data,
+            species=form.species.data,
+            photo_url=form.photo_url.data,
+            age=form.age.data,
+            notes=form.notes.data)
+
+        db.session.add(pet)
+        db.session.commit()
+
+        return redirect("/")
+    else:
+        return render_template("add_pet.html", form=form)
